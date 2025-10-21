@@ -26,7 +26,7 @@ public sealed class InvoiceMaker: BaseMaker, IMaker<Invoice> {
     return Random(COMPLEMENTS.NONE);
   }
 
-  public Invoice Random(COMPLEMENTS complement){
+  private Invoice Random(COMPLEMENTS complement){
 
     var complementFound = GetComplement(complement);
 

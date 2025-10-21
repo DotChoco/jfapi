@@ -10,7 +10,7 @@ public class Program{
     if(Documentation.NeedsPrintDoc(args)){
       Documentation.Print();
     }
-    return;
+    // return;
 
     // SelfInvoice
     if(args[0].ToLower() == "--sfi"){
@@ -41,7 +41,8 @@ public class Program{
 
       //Random Invoice
       if(args[1].ToLower() == "r"){
-        invM.SetInvoice(invM.Random(COMPLEMENTS.NONE));
+        Console.WriteLine("hola");
+        invM.SetInvoice(invM.Random());
       }
 
       return;
