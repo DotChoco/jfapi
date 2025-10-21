@@ -1,27 +1,63 @@
-﻿using System.Text.Json;
-// using System.Text.Json.Serialization;
+﻿using jfapi.makers;
+using jfapi.doc;
 
-
-namespace jfapi.models;
+namespace jfapi;
 
 public class Program{
   public static void Main(string[] args){
-    Invoice invoice = new();
-    invoice.Conceptos.Concepto = new();
-    invoice.Conceptos.Concepto.Add(new());
-    invoice.Conceptos.Concepto[0].Impuestos = new(){
-      Traslados = new(){
-        Traslado = new()
+
+    //Print help about the program
+    if(Documentation.NeedsPrintDoc(args)){
+      Documentation.Print();
+    }
+    // if(args[0].ToLower() == "-h" || args[0].ToLower() == "--help"){
+    //   return;
+    // }
+    return;
+
+    // SelfInvoice
+    if(args[0].ToLower() == "--sfi"){
+      SelfInvoiceMaker sfInM = new();
+
+      //Manual/Custom SetInvoice
+      if(args[1].ToLower() == "-m"){
+        //Print help about the program
+        if(args[args.Length - 1].ToLower() == "-h" || args[args.Length - 1].ToLower() == "--help"){
+          Documentation.PrintDocument(DOCUMENT.SELFINVOICE);
+          return;
+        }
+        else
+          sfInM.SetInvoice(sfInM.FromFile(args[2]));
+
       }
-    };
-    invoice.Conceptos.Concepto[0].Impuestos.Traslados.Traslado.Add(new(){ Base = 1500.0000f });
 
-    var options = new JsonSerializerOptions{
-      WriteIndented = true
-      // DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-    };
-    var json = JsonSerializer.Serialize(invoice, options);
+      //Random SelfInvoice
+      if(args[1].ToLower() == "r"){
+        if(args[args.Length - 1].ToLower() == "-h" || args[args.Length - 1].ToLower() == "--help"){
+          Documentation.PrintDocument(DOCUMENT.SELFINVOICE);
+          return;
+        }
+        else
+          sfInM.SetInvoice(sfInM.Random());
+      }
+      return;
+    }
 
-    Console.WriteLine(json);
+    // Invoice with or without complement
+    // (Carta Porte, Payment Receipt,...)
+    if(args[0].ToLower() == "-i"){
+      InvoiceMaker invM = new();
+      //Manual/Custom Invoice
+      if(args[1].ToLower() == "m")
+        invM.SetInvoice(invM.FromFile(args[2]));
+
+      //Random Invoice
+      if(args[1].ToLower() == "r")
+        invM.SetInvoice(invM.Random(COMPLEMENTS.NONE));
+
+
+      return;
+    }
+
   }
 }

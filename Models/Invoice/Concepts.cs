@@ -4,7 +4,7 @@ public sealed class Concepts{
 }
 
 public sealed class Concept{
-  public Taxes Impuestos { get; set; } = new();
+  public Taxes? Impuestos { get; set; } = null;
   public string ObjetoImp { get; set; } = string.Empty;
   public string ClaveProdServ { get; set; } = string.Empty;
   public string NoIdentificacion { get; set; } = string.Empty;
@@ -18,19 +18,18 @@ public sealed class Concept{
 
 
 public sealed class Taxes{
-  public Traslates Traslados { get; set; } = new();
-
+  public Traslates? Traslados { get; set; } = null;
 }
 
 public sealed class Traslates{
-  public List<Traslate> Traslado { get; set; } = new();
+  public List<Traslate>? Traslado { get; set; } = null;
 }
 
 public sealed class Traslate{
-  public float Base { get; set; } = 0.0f;
-  public string Impuesto { get; set; } = string.Empty;
-  public string TipoFactor { get; set; } = string.Empty;
-  public string TasaOCuota { get; set; } = string.Empty;
-  public float Importe { get; set; } = 0.0f;
+  public float? Base { get; set; } = 0.0f;
+  public string? Impuesto { get; set; } = string.Empty;
+  public string? TipoFactor { get; set; } = string.Empty;
+  public string? TasaOCuota { get; set; } = string.Empty;
+  public float? Importe { get; set; } = 0.0f;
 }
 
