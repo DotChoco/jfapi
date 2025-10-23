@@ -1,10 +1,12 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
+using jfapi.makers.validator;
 
 namespace jfapi.makers;
 public class BaseMaker{
 
+  protected Inspector inspector = new();
 
   protected float RoundFloat(float value, byte scale) => (float)Math.Round((decimal)value, scale);
 
@@ -15,9 +17,7 @@ public class BaseMaker{
       DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
     };
 
-
-    json = JsonSerializer.Serialize(data, options);
-    return json;
+    return JsonSerializer.Serialize(data, options);
   }
 
   public string MakeXML<T>(T data){

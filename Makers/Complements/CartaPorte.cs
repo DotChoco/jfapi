@@ -4,6 +4,10 @@ namespace jfapi.makers;
 public sealed class CartaPorteMaker {
 
 
-  public CartaPorte? Random(){ return null;}
+  public CartaPorte Random(){
+    CartaPorte newCP = new();
+    newCP.Cartaporte = new(){name = "Metroman" };
+    return newCP;
+  }
 }
 

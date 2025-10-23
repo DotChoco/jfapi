@@ -1,15 +1,17 @@
+using jfapi.collections;
 using jfapi.models;
 namespace jfapi.makers;
 
-public sealed class SelfInvoiceMaker: IMaker<SelfInvoice> {
+public sealed class SelfInvoiceMaker: BaseMaker, IMaker<SelfInvoice> {
   private SelfInvoice _sfInvoice = new();
+  public SelfInvoice SFInvoice;
 
   public SelfInvoice FromFile(string Path){
 
     return null;
   }
 
-  public SelfInvoice Random(){
+  public SelfInvoice Random(COMPLEMENTS complement = COMPLEMENTS.NONE){
    return null;
   }
 

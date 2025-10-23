@@ -2,6 +2,6 @@ using System.Text.Json.Serialization;
 
 namespace jfapi.models;
 
-public sealed class PaymentReceipt: IComplement{
+public sealed class PaymentReceipt{
 
 }

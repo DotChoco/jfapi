@@ -14,6 +14,9 @@ public class Program{
     //This method will be execute the actions
     //that become from the arguments
     Args.Execute();
+
+    Args.PrintInvoice();
+
   }
 }
 

@@ -5,7 +5,7 @@ public sealed class PaymentReceiptMaker {
 
 
 
-  public PaymentReceipt? Random(){ return null;}
+  public PaymentReceipt Random(){ return new();}
 
 }
 
