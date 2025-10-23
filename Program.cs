@@ -1,52 +1,21 @@
-﻿using jfapi.makers;
-using jfapi.doc;
+﻿using jfapi.args;
 
 namespace jfapi;
 
 public class Program{
   public static void Main(string[] args){
 
-    //Print help about the program
-    if(Documentation.NeedsPrintDoc(args)){
-      Documentation.Print();
-    }
-    // return;
+    Console.Clear();
 
-    // SelfInvoice
-    if(args[0].ToLower() == "--sfi"){
-      SelfInvoiceMaker sfInM = new();
+    //Check the instructions that
+    //become from the arguments
+    Args.Interpreter(args);
 
-      //Manual/Custom SetInvoice
-      if(args[1].ToLower() == "-m"){
-        sfInM.SetInvoice(sfInM.FromFile(args[2]));
-      }
-
-      //Random SelfInvoice
-      if(args[1].ToLower() == "r"){
-        sfInM.SetInvoice(sfInM.Random());
-      }
-
-      return;
-    }
-
-    // Invoice with or without complement
-    // (Carta Porte, Payment Receipt,...)
-    if(args[0].ToLower() == "-i"){
-      InvoiceMaker invM = new();
-
-      //Manual/Custom Invoice
-      if(args[1].ToLower() == "m"){
-        invM.SetInvoice(invM.FromFile(args[2]));
-      }
-
-      //Random Invoice
-      if(args[1].ToLower() == "r"){
-        Console.WriteLine("hola");
-        invM.SetInvoice(invM.Random());
-      }
-
-      return;
-    }
-
+    //This method will be execute the actions
+    //that become from the arguments
+    Args.Execute();
   }
 }
+
+
+

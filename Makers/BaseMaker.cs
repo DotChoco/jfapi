@@ -1,20 +1,9 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
-using jfapi.models;
 
 namespace jfapi.makers;
-public enum COMPLEMENTS{
-  NONE,
-  CP,
-  P
-}
-public class BaseMaker {
-  protected readonly Dictionary<COMPLEMENTS, IComplement?> ComplemetMap = new(){
-    {COMPLEMENTS.CP, new CartaPorte()}, //CartaPorte
-    {COMPLEMENTS.P, new PaymentReceipt()}, //Payment
-    {COMPLEMENTS.NONE, null}, //Payment
-  };
+public class BaseMaker{
 
 
   protected float RoundFloat(float value, byte scale) => (float)Math.Round((decimal)value, scale);

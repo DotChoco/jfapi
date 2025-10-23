@@ -1,4 +1,5 @@
 using jfapi.models;
+using jfapi.collections;
 
 namespace jfapi.makers;
 
@@ -40,7 +41,7 @@ public sealed class InvoiceMaker: BaseMaker, IMaker<Invoice> {
     return _invoice;
   }
 
-  public IComplement GetComplement(COMPLEMENTS type) => ComplemetMap!.GetValueOrDefault(type, null)!;
+  public IComplement GetComplement(COMPLEMENTS type) => ComplementMap.Map!.GetValueOrDefault(type, null)!;
 
 
   public Invoice FromFile(string Path){
