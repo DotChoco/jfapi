@@ -41,8 +41,7 @@ public static class Documentation{
       else{ break; }
     }
 
-
-    _document = Detector(infoArgs);
+    _document = ArgsOptions.Map.GetValueOrDefault(infoArgs.Last(), DOCUMENT.NONE);
     return _document != DOCUMENT.NONE ? true : false;
   }
 
@@ -66,32 +65,6 @@ public static class Documentation{
     }
 
     return instructions;
-  }
-
-
-  private static DOCUMENT Detector(List<string> infoArgs){
-    //Invoice
-    if(infoArgs[0] == "-i" || infoArgs[0].ToLower() == "--invoice"){
-      if(infoArgs.Count > 1 ){
-        return ArgsOptions.Map.GetValueOrDefault(infoArgs.Last(), DOCUMENT.NONE);
-        // //Carta Porte
-        // if(infoArgs[1].ToLower() == "--cp")
-        //   return DOCUMENT.CARTAPORTE;
-        // //Payment Receipt
-        // if(infoArgs[1].ToLower() == "--pr")
-        //   return DOCUMENT.PAYMENTRECEIPT;
-      }
-
-      return DOCUMENT.INVOICE;
-    }
-
-    //Self Invoice
-    if(infoArgs[0] == "-s" || infoArgs[0].ToLower() == "--selfinvoice"){
-      return DOCUMENT.SELFINVOICE;
-    }
-
-    // If nothing matches will return NONE
-    return DOCUMENT.NONE;
   }
 
 }
