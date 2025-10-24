@@ -1,11 +1,9 @@
 using jfapi.collections;
 
 namespace jfapi.behaviour;
-public static class Documentation{
-  private static byte _maxLengthShortArg = 2;
+public class Documentation: Instructions{
   private static DOCUMENT _document = DOCUMENT.NONE;
   private static string _docPath = @"C:\Users\techl\Dev\cs\jfapi\doc\";
-  private static (bool, byte) helpArg = (false,0);
 
 
 
@@ -17,7 +15,7 @@ public static class Documentation{
     foreach(var line in file){Console.WriteLine(line);}
   }
 
-  public static bool NeedsPrintDoc(string[] args){
+  public bool NeedsPrintDoc(string[] args){
     List<string> infoArgs = new();
     byte maxArgs = 2;
     byte currentArg = 0;
@@ -41,11 +39,13 @@ public static class Documentation{
       else{ break; }
     }
 
-    _document = ArgsOptions.Map.GetValueOrDefault(infoArgs.Last(), DOCUMENT.NONE);
+    if(infoArgs.Count > 0)
+      _document = ArgsOptions.DocMap.GetValueOrDefault(infoArgs.Last(), DOCUMENT.NONE);
+
     return _document != DOCUMENT.NONE ? true : false;
   }
 
-  private static List<string> GetInstructions(string[] args){
+  protected override List<string> GetInstructions(string[] args){
     List<string> instructions = new();
     byte counterInclude = 0;
 

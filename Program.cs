@@ -5,17 +5,18 @@ namespace jfapi;
 public class Program{
   public static void Main(string[] args){
 
+    Application app = new();
     // Console.Clear();
 
     //Check the instructions that
     //become from the arguments
-    Application.Interpreter(args);
+    app.Interpreter(args);
 
     //This method will be execute the actions
     //that become from the arguments
-    Application.Execute();
+    app.Execute();
 
-    // Application.PrintInvoice();
+    app.PrintInvoice();
 
   }
 }

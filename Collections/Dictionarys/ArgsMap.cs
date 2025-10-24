@@ -1,7 +1,7 @@
 namespace jfapi.collections;
 public static class ArgsOptions{
 
-  public static Dictionary<string, DOCUMENT> Map = new(){
+  public static Dictionary<string, DOCUMENT> DocMap = new(){
     { "--invoice", DOCUMENT.INVOICE},
     { "--pr", DOCUMENT.PAYMENTRECEIPT},
     { "--cp", DOCUMENT.CARTAPORTE},
@@ -12,5 +12,18 @@ public static class ArgsOptions{
     { "-r", DOCUMENT.RANDOM},
     { "-m", DOCUMENT.MANUAL},
     { "-i", DOCUMENT.INVOICE},
+  };
+
+  public static Dictionary<string, ARGACTIONS> ArgMap = new(){
+    { "--invoice", ARGACTIONS.INVOICE},
+    { "--pr", ARGACTIONS.PAYMENTRECEIPT},
+    { "--cp", ARGACTIONS.CARTAPORTE},
+    { "--manual", ARGACTIONS.MANUAL},
+    { "--random", ARGACTIONS.RANDOM},
+    { "--selfinvoice", ARGACTIONS.SELFINVOICE},
+    { "-s", ARGACTIONS.SELFINVOICE},
+    { "-r", ARGACTIONS.RANDOM},
+    { "-m", ARGACTIONS.MANUAL},
+    { "-i", ARGACTIONS.INVOICE},
   };
 }
