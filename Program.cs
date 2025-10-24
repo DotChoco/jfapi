@@ -1,21 +1,21 @@
-﻿using jfapi.args;
+﻿using jfapi.behaviour;
 
 namespace jfapi;
 
 public class Program{
   public static void Main(string[] args){
 
-    Console.Clear();
+    // Console.Clear();
 
     //Check the instructions that
     //become from the arguments
-    Args.Interpreter(args);
+    Application.Interpreter(args);
 
     //This method will be execute the actions
     //that become from the arguments
-    Args.Execute();
+    Application.Execute();
 
-    Args.PrintInvoice();
+    // Application.PrintInvoice();
 
   }
 }

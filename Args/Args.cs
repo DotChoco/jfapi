@@ -1,8 +1,8 @@
 using jfapi.makers;
 
-namespace jfapi.args;
-public static class Args {
-  private static object action = null;
+namespace jfapi.behaviour;
+public static class Application {
+  private static byte _action = byte.MinValue;
   private static bool _printDoc = false;
   private static bool _printInvoice = false;
   private static byte _invoiceType = 0;
@@ -12,47 +12,45 @@ public static class Args {
 
   public static void Interpreter(string[] args){
     _printDoc = Documentation.NeedsPrintDoc(args);
-    // action = null;
+    // _action = null;
   }
 
 
   public static void Execute(){
+    // Print Documentation
+    if(_printDoc){
+      Documentation.Print();
+      Close();
+    }
+
     // if(true) { ExecuteInv(1); }
       // Console.WriteLine("Method Executed");
-    ExecuteInv(1);
+    // ExecuteInv(1);
+
   }
 
 
-  //Print help about the program
-  private static void ExecuteDoc(byte action, string? path = null){
-    if(path != null)
-      Documentation.Print(path);
-
-    Close();
-  }
-
-
-  private static void ExecuteInv(byte action, string? path = null){
+  private static void ExecuteInv(byte subAction, string? path = null){
     //Manual/Custom Invoice
-    if(action == 0 && path != null){
+    if(subAction == 0 && path != null){
       _invM.SetInvoice(_invM.FromFile(path));
     }
 
     //Random Invoice
-    if(action == 1){
+    if(subAction == 1){
       _invM.SetInvoice(_invM.Random(collections.COMPLEMENTS.CP));
     }
   }
 
 
-  private static void ExecuteSFI(byte action, string? path = null){
+  private static void ExecuteSFI(byte subAction, string? path = null){
     //Manual/Custom SetInvoice
-    if(action == 0 && path != null){
+    if(subAction == 0 && path != null){
       _sfInM.SetInvoice(_sfInM.FromFile(path));
     }
 
     //Random SelfInvoice
-    if(action == 1){
+    if(subAction == 1){
       _sfInM.SetInvoice(_sfInM.Random());
     }
   }
