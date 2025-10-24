@@ -43,7 +43,7 @@ public sealed class Application: Instructions{
 
     //Random Invoice
     if(subAction == 1){
-      _invM.SetInvoice(_invM.Random(COMPLEMENTS.CP));
+      _invM.SetInvoice(_invM.Random());
     }
   }
 

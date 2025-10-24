@@ -31,14 +31,15 @@ public sealed class InvoiceMaker: BaseMaker, IMaker<Invoice> {
   }
 
   public Invoice Random(COMPLEMENTS complement = COMPLEMENTS.NONE){
-    var complementFound = GetComplement(complement);
+    if(complement != COMPLEMENTS.NONE){
+      var complementFound = GetComplement(complement);
 
-    if(complementFound.GetType() == typeof(CartaPorte))
-      _invoice.Complemento!.any!.Add(new CartaPorteMaker().Random());
+      if(complementFound.GetType() == typeof(CartaPorte))
+        _invoice.Complemento!.any!.Add(new CartaPorteMaker().Random());
 
-    else if(complementFound.GetType() == typeof(PaymentReceipt))
-      _invoice.Complemento!.any!.Add(new PaymentReceiptMaker().Random());
-
+      else if(complementFound.GetType() == typeof(PaymentReceipt))
+        _invoice.Complemento!.any!.Add(new PaymentReceiptMaker().Random());
+    }
     else
       _invoice.Complemento = null;
 
